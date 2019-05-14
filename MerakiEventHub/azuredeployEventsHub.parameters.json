@@ -8,19 +8,19 @@
 
     "namespaceName": {
 
-      "value": "GEN-UNIQUE"
+      "value": "MerakiEdp"
 
     },
 
     "eventHubName": {
 
-      "value": "GEN-UNIQUE"
+      "value": "MerakiEdp"
 
     },
 
     "consumerGroupName": {
 
-      "value": "GEN-UNIQUE"
+      "value": "MerakiEdp"
 
     }
 

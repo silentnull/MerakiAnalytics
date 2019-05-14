@@ -4,14 +4,14 @@
   "parameters": {
     "servers_merakiserver_name": {
       //"value": "kuintegrationloggingtest",
-      "value": "merakiservertest"
+      "value": "merakiserveredp"
     },
     "administratorLogin": {
       "value": "CiscoTest"
     },
 
     "administratorLoginPassword": {
-      "value": "Meraki121121#"
+      "value": "kuraki.123?"
     },
 
     "databases_merakidb_name": {

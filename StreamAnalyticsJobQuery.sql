@@ -17,7 +17,7 @@
         ,observations.arrayvalue.os
         ,observations.arrayvalue.clientMac
         ,observations.arrayvalue.seenEpoch
-        ,observations.arrayvalue.rssi 
+        ,observations.arrayvalue.rssi  
       into [sqloutput]
       from [inputevent] as e
         cross apply getarrayElements(e.data.observations) as observations

@@ -25,7 +25,7 @@ namespace MerakiCisco
     {
 
         //These must be changed with the values that are in the Meraki dashboard 
-        private const string VALIDATOR = "MerakiPOC";
+        private const string VALIDATOR = "cc4cb03bada81fc598bb96949548ea4d60367e51";
         private const string SECRET = "ValidCode";
 
 
@@ -54,24 +54,30 @@ namespace MerakiCisco
         private void PostFile(HttpContext context)
         {
             string dt = string.Format("text-{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
-            var ehClient = EventHubClient.CreateFromConnectionString("Endpoint=sb://merakinstest1.servicebus.windows.net/;SharedAccessKeyName=ManagePolicy;SharedAccessKey=StnDcVm4L0rQjiDb/txGNzo6FF/Nt1ZT7PJIi6A4ens=;EntityPath=meraki");
+            var ehClient = EventHubClient.CreateFromConnectionString("Endpoint=sb://merakiedp.servicebus.windows.net/;SharedAccessKeyName=SendPolicy;SharedAccessKey=LHhHlYY0wpKcrcRRnaFsO6ucTZiTjgeT8wR/WZbtejs=;EntityPath=merakiedp");
+
             var jsonString = String.Empty;
+            
+            context.Request.InputStream.Position = 0;
             try
             {
-
-                context.Request.InputStream.Position = 0;
                 using (var inputStream = new StreamReader(context.Request.InputStream))
                 {
                     jsonString = inputStream.ReadToEnd();
                 }
 
                 ehClient.Send(new EventData(Encoding.UTF8.GetBytes(jsonString)));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Post error: {ex.Message}", ex);
+            }
+            finally
+            {
                 ehClient.Close();
             }
-            catch
-            {
-
-            }
+            context.Response.ContentType = " text / plain ";
+            context.Response.Write(VALIDATOR);
 
         }
 
